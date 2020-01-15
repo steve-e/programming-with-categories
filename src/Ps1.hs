@@ -1,9 +1,13 @@
+{-# language FlexibleInstances #-}
+{-# language MultiParamTypeClasses #-}
+{-# language FunctionalDependencies #-}
 module Ps1 
     ( q1a,
       q1b
     ) where
 
 import Control.Arrow
+import Data.Monoid
 {-
 Question 1. Functions in mathematics and Haskell.
 Suppose f : Int → Int sends an integer to its square, f(x) := x2 and that g: Int →
@@ -31,6 +35,28 @@ g = \x -> x +1
 
 
 
+{-
+Question 9. Defining a toy category in Haskell.
+-}
 
+class Category obj mor | mor -> obj where 
+    dom :: mor -> obj
+    cod :: mor -> obj
+    idy :: obj -> mor
+    cmp :: mor -> mor -> Maybe mor
 
+data Mor = Id Two |AB deriving (Eq, Show)
+data Two = A|B deriving (Eq, Show)
 
+instance Category Two Mor where
+    dom AB = A
+    dom (Id a) = a
+    cod AB = B
+    cod (Id a) = a
+    idy a = Id a
+    cmp a b
+        | (cod a) /= (dom b) = Nothing 
+    cmp (Id x) (Id _) = Just (Id x)   
+    cmp AB (Id B) = Just AB
+    cmp (Id A) AB = Just AB
+  
