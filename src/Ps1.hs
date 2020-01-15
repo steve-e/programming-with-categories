@@ -54,9 +54,10 @@ instance Category Two Mor where
     cod AB = B
     cod (Id a) = a
     idy a = Id a
-    cmp a b
-        | (cod a) /= (dom b) = Nothing 
-    cmp (Id x) (Id _) = Just (Id x)   
+    cmp (Id x) (Id y) 
+        | x == y = Just (Id x)   
     cmp AB (Id B) = Just AB
     cmp (Id A) AB = Just AB
-  
+    cmp _ _ = Nothing  
+
+    
