@@ -30,6 +30,21 @@ resolver: lts-14.20
 #   - wai
 packages:
 - .
+
+
+
+dependencies:
+ - base == 4.*
+
+library:
+  source-dirs: src, app
+
+tests:
+  spec:
+    defaults: hspec/hspec@master
+    dependencies: stack
+     - hspec ==2.*
+
 # Dependency packages to be pulled from upstream that are not in the resolver.
 # These entries can reference officially published versions as well as
 # forks / in-progress versions pinned to a git hash. For example:

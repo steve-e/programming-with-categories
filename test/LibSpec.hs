@@ -1,5 +1,4 @@
-{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
-module Spec (main, spec) where
+module LibSpec (main, spec) where
 
 import Test.Hspec
 import Lib
@@ -11,4 +10,4 @@ spec :: Spec
 spec = do
   describe "message" $ do
     it "returns a String" $ do
-      message `shouldBe` "foo bar"
+      message `shouldBe` "hello"

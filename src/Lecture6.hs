@@ -1,3 +1,4 @@
+module Lecture6 where
 -- example
 tuple :: (t -> a, t -> b) -> t -> (a, b)
 tuple (f,g) = \c -> (f c, g c)
