@@ -3,7 +3,10 @@
 {-# language FunctionalDependencies #-}
 module Ps1 
     ( q1a,
-      q1b
+      q1b,
+      Category(..),
+      Mor(..),
+      Two(..)
     ) where
 
 import Control.Arrow
