@@ -1,5 +1,21 @@
 module Ps2 where
+import Data.Functor
 
+{-
+Question 2. Constant functors.
+Let C and D be categories. Given any object d in D, we can define the constant functor Kd : C → D on d. This functor sends every of object C to d ∈ Ob D, and every morphism of C to the identity morphism on d.
+(a) Take the set B = {T,F}. Show that the constant functor KB : Set → Set obeys the two functor laws: preservation of composition and preservation of identities.
+(b) Implement in Haskell the constant functor on the type Bool
+-}
+
+data ConstantBool a = ConstantBool Bool deriving (Eq, Show) 
+
+constantBool :: Bool -> a -> ConstantBool a
+constantBool b a = ConstantBool b
+
+
+instance Functor ConstantBool where
+    fmap _ (ConstantBool a) = ConstantBool a
 
 {- 
 Question 6. Products in Hask.
