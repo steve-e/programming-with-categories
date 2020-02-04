@@ -32,3 +32,27 @@ productAlg (Cons n a) = n * a
 productF :: ListInt -> Int
 productF = cata productAlg
 
+
+{-
+Question 3. Naturals.
+Natural numbers can be represented in Haskell as a recursive data structure
+data Nat = Zero | Succ Nat
+(a) Implement a type Nat2, isomorphic to Nat, but this time defined as an initial
+algebra of a functor.
+(b) Using a catamorphism, define a function Nat2 -> Int that maps n to the n-th
+Fibonacci number.
+(c) Define a coalgebra whose anamorphism is a (partial) function Int -> Nat2 that
+sends a non-negative Int into its fixed-point representation (ie. its representation
+as a value of Nat2).
+-}
+
+data Nat2 n = Zero n | Succ (Nat2 n) n deriving Functor
+type NatInt = Fix Nat2 
+
+fibAlg :: Nat2 Int -> Int
+fibAlg (Zero _) = 0
+fibAlg (Succ (Zero _) _) = 1
+fibAlg (Succ (Succ _ x) y) = x + y
+
+nthFib::NatInt-> Int
+nthFib n = cata fibAlg n
