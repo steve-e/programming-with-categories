@@ -55,3 +55,14 @@ intAlg (Succ n) = n + 1
 
 toInt::NatInt-> Int
 toInt n = cata intAlg n
+
+
+fibAlg :: Nat2 (Int, Int)-> (Int,Int)
+fibAlg Zero   = (1 , 1)
+fibAlg (Succ (n1,n2)) = (n2, n1 + n2)
+
+fib::NatInt -> Int
+fib n = snd  (fib2 n)
+fib2 n = cata fibAlg n
+
+
