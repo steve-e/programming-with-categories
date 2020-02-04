@@ -20,10 +20,19 @@ spec = do
       toInt (Fix ( Succ ( Fix Zero))) `shouldBe` 1
     it "toInt 2" $ do
       toInt (Fix (Succ (Fix (Succ ( Fix Zero))))) `shouldBe` 2
+  describe "toNat" $ do
+    it "toNat 0" $ do
+      toNat 0  `shouldBe` (Fix Zero)
+    it "toNat 1" $ do
+      toNat 1`shouldBe` (Fix ( Succ ( Fix Zero))) 
+    it "toNat 2" $ do
+      toNat 2 `shouldBe`   (Fix (Succ (Fix (Succ ( Fix Zero)))))     
   describe "fib" $ do
-    it "fib 0" $ do
-      fib (Fix Zero) `shouldBe` 1
-    it "fib 1" $ do
-      fib (Fix ( Succ ( Fix Zero))) `shouldBe` 2
-    it "fib 4" $ do
-      fib (Fix (Succ (Fix (Succ (Fix (Succ ( Fix Zero))))))) `shouldBe` 5
+    it "fib 0 is 0" $ do
+      fib (Fix Zero) `shouldBe` 0
+    it "fib 1 is 1" $ do
+      fib (Fix ( Succ ( Fix Zero))) `shouldBe` 1
+    it "fib 2 is 1" $ do
+      fib (toNat 2) `shouldBe` 1
+    it "fib 6" $ do
+      fib (toNat 6) `shouldBe` 8
