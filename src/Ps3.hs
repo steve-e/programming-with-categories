@@ -46,13 +46,12 @@ sends a non-negative Int into its fixed-point representation (ie. its representa
 as a value of Nat2).
 -}
 
-data Nat2 n = Zero n | Succ (Nat2 n) n deriving Functor
+data Nat2 n = Zero | Succ n deriving Functor
 type NatInt = Fix Nat2 
 
-fibAlg :: Nat2 Int -> Int
-fibAlg (Zero _) = 0
-fibAlg (Succ (Zero _) _) = 1
-fibAlg (Succ (Succ _ x) y) = x + y
+intAlg :: Nat2 Int-> Int
+intAlg Zero  = 0
+intAlg (Succ n) = n + 1
 
-nthFib::NatInt-> Int
-nthFib n = cata fibAlg n
+toInt::NatInt-> Int
+toInt n = cata intAlg n

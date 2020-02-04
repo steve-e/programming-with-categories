@@ -13,3 +13,10 @@ spec = do
   describe "ListInt product" $ do
     it "product of 3,2,3" $ do
       productF (Fix (Cons 3 $ Fix(Cons 2 $ Fix(Cons 3 $ Fix Nil)))) `shouldBe` 18
+  describe "toInt" $ do
+    it "toInt 0" $ do
+      toInt (Fix Zero) `shouldBe` 0
+    it "toInt 1" $ do
+      toInt (Fix ( Succ ( Fix Zero))) `shouldBe` 1
+    it "toInt 2" $ do
+      toInt (Fix (Succ (Fix (Succ ( Fix Zero))))) `shouldBe` 2
