@@ -73,3 +73,13 @@ natAlg n = Succ(n-1)
 
 toNat::Int -> NatInt
 toNat n = ana natAlg n 
+
+
+
+
+
+data Cont s x = Cont ((x -> s) -> s)
+
+instance Functor (Cont s) where 
+    fmap f (Cont ass) = Cont (\bs -> ass (bs . f))
+
